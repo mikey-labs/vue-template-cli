@@ -38,3 +38,7 @@ export const useNavigation = (router) => {
     return originalGo.call(this, n);
   };
 };
+//处理物理键回退
+window.addEventListener('popstate', () => {
+  setRedirection('back', 1, false);
+});

@@ -2,34 +2,17 @@
 import { reactive } from 'vue';
 import { useRouterStore } from '@/store/useRouterStore.js';
 
+/**
+ *主题定制，根据需求配置
+ * @type {Store<"RouterStore", {homeKeepAlive: string[], keepAlive: [string]}, {}, {resetCache(): void, clearCache(): void, addOrDelete(*, *): void}>}
+ */
 const routerStore = useRouterStore();
 const themeVars = reactive({
   primaryColor: '#0F77F0',
   dangerColor: '#F85B59',
-  fieldInputTextColor: '#333333',
-  cellVerticalPadding: '8px',
-  buttonDefaultHeight: '40px',
   buttonNormalFontSize: '16px',
   overlayBackground: 'rgba(51, 51, 51, 0.7)',
-  navBarHeight: '2.75rem',
-  floatingPanelBarHeight: '4px',
-  floatingPanelBarWidth: '6.25rem',
-  floatingPanelBarColor: '#333',
-  floatingPanelBackground: '#F5F6FA',
-  floatingPanelHeaderHeight: '24px',
-  floatingPanelZIndex: '99',
-  dialogRadius: '8px',
-  dialogHeaderFontWeight: 'normal',
-  fieldPlaceholderTextColor: '#999999',
-  dropdownMenuShadow: 'none',
-  actionSheetItemIconSize: '24px',
-  actionSheetItemTextColor: '#333',
-  actionSheetItemFontSize: '14px',
-  actionSheetItemIconMarginRight: '4px',
-  uploaderBorderRadius: '4px',
-  switchWidth: '60px',
   toastBackground: 'rgba(51, 51, 51, 0.8)',
-  gridItemContentPadding: '0.5rem',
   toastRadius: '0.25rem'
 });
 </script>

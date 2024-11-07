@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/*
+html, body, 写入safe-area-inset-bottom 是为了通过js可以获取到顶部或者底部的实际像素高度
+*/
 @layer utilities {
     html{
         --safe-area-bottom:env(safe-area-inset-bottom);
@@ -8,21 +11,33 @@
         --safe-area-top-old:constant(safe-area-inset-top);
         --safe-area-top:env(safe-area-inset-top);
     }
+    /**
+    默认字体设置
+     */
     html,body,#app{
         @apply h-screen;
         font-family: -apple-system,BlinkMacSystemFont,Roboto,Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Noto Color Emoji";
     }
+    /**
+    html,body #app 默认以light 模式展示，都禁止滚动
+     */
     html,body{
         color-scheme: light;
-        @apply overflow-hidden bg-[#f5f6fa] text-body;
+        @apply overflow-hidden bg-white text-body;
     }
     #app{
         @apply overflow-x-hidden overflow-y-auto mx-auto max-w-screen-sm relative;
     }
+    /**
+    不显示滚动条
+     */
     .overflow-y-auto::-webkit-scrollbar,.overflow-x-auto::-webkit-scrollbar,.van-sidebar::-webkit-scrollbar{
         @apply w-0 h-0 hidden;
         scroll-behavior: smooth;
     }
+    /**
+    所有属性禁止用户选择高亮等属性
+     */
     *{
         -webkit-tap-highlight-color: transparent;
         -webkit-user-select:none;
@@ -30,11 +45,14 @@
         -webkit-touch-callout:none;
         touch-action: manipulation;
     }
-    /*宽高比hack*/
+    /*
+    在不支持aspect-ratio使用如下
+    宽高比hack
+    */
     .aspect-inner{
         @apply absolute left-0 right-0 bottom-0 top-0 h-full w-full;
     }
-    .aspect-16-9-hack,.aspect-2-1-hack,.aspect-square-hack,.aspect-3-1-hack,.aspect-25-32-hack{
+    .aspect-16-9-hack,.aspect-2-1-hack,.aspect-square-hack,.aspect-3-1-hack{
         @apply h-0 relative w-full;
     }
     .aspect-16-9-hack{
@@ -49,55 +67,4 @@
     .aspect-3-1-hack{
         padding-top: 33.33334%;
     }
-    .aspect-25-32-hack{
-        padding-top: 128%;
-    }
-
-    .van-action-sheet__content {
-        overflow-y: hidden;
-    }
-
-
-    .bounce-enter-active {
-        position: absolute;
-        animation: bounce-in 0.5s;
-    }
-    .bounce-leave-active {
-        animation: bounce-in 0.5s reverse;
-    }
-    @keyframes bounce-in {
-        0% {
-            transform: scale(0);
-        }
-        50% {
-            transform: scale(1.25);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    .press{transition: filter 0.2s ease-in-out;}
-    .press:active{filter: brightness(70%);}
-
-    .navbar-safe-area-top{
-        top: constant(safe-area-inset-top);
-        top: env(safe-area-inset-top);
-    }
-    .navbar-safe-area{
-        padding-top: constant(safe-area-inset-top);
-        padding-top: env(safe-area-inset-top);
-    }
-    .navbar-safe-area:after{
-        content: '';
-        display: block;
-        height: 2.75rem;
-        width: 100%;
-    }
-    .footer-safe-area{
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-bottom: 20px;
-    }
-
 }

@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia';
-import { PreferenceList } from '@/constant/Preferences.js';
 import { useStorage } from '@zhengxy/use';
 import { computed, ref } from 'vue';
-import { USER_PROFILE, USER_TOKEN } from '@/constant/Constant.js';
 import pinia from '@/plugin/CreatePinia.js';
+import { USER_PROFILE, USER_TOKEN } from '@/constant/Constant.js';
 
 const Storage = useStorage();
 
@@ -27,24 +26,7 @@ const useUserStoreWithOut = defineStore('UserStore', () => {
   };
   const token = ref({ ...tokenState });
   const user = ref({ ...userState });
-  const calcUserPreferenceList = (preferenceIds, addAllItem = true) => {
-    const allItem = addAllItem ? [{ text: 'All', value: -1 }] : [];
-    if (preferenceIds.length > 0) {
-      //如果有分类则返回全部
-      return [
-        ...allItem,
-        ...preferenceIds.map((id) => {
-          return PreferenceList.find(({ value }) => value === id);
-        })
-      ];
-    }
-    return [];
-  };
 
-  const userPreferenceList = computed(() => {
-    const { preferenceIds } = user.value;
-    return calcUserPreferenceList(preferenceIds);
-  });
   const setUser = (newUser = {}, storeToLocal = false) => {
     for (const key in newUser) {
       if (Object.prototype.hasOwnProperty.call(user.value, key)) {
@@ -76,8 +58,6 @@ const useUserStoreWithOut = defineStore('UserStore', () => {
   return {
     token: token,
     user: user,
-    calcUserPreferenceList,
-    userPreferenceList,
     setUser,
     setTokenInfo,
     resetTokenInfo,

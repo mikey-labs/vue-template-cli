@@ -48,7 +48,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolveAlias('src'),
-      atom: resolveAlias('src/components/Atom/'),
+      components: resolveAlias('src/components/'),
       plugin: resolveAlias('src/plugin/'),
       api: resolveAlias('src/api/'),
       assets: resolveAlias('src/assets/')
@@ -58,7 +58,7 @@ export default defineConfig({
   server: {
     cors: true,
     proxy: {
-      '/app-api': ''
+      '/api': ''
     }
   },
   esbuild: {
@@ -68,7 +68,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        dir: 'dist/app-h5',
+        dir: 'dist',
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'

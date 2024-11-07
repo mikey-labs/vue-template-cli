@@ -3,9 +3,6 @@ import inactive_icon from 'assets/login/inactive.svg';
 import active_icon from 'assets/login/active.svg';
 import { showLoadingToast, showToast } from 'vant';
 import { useRouter } from 'vue-router';
-import { useLoginCoverImage } from '@/hooks/useLoginCoverImage.js';
-import { PrivacyPolicy, UserAgreement } from '@/constant/Policy.js';
-import { validateUSPhoneNumber } from 'plugin/Utils.js';
 import { apiGetVerifyCode } from 'api/User.js';
 
 defineOptions({ name: 'Login' });
@@ -14,7 +11,6 @@ const handleToggleProtocol = () => {
   data.isAgree = !data.isAgree;
 };
 
-const Policies = [UserAgreement, PrivacyPolicy];
 const data = reactive({
   phone: '',
   isAgree: false,
@@ -25,15 +21,6 @@ const data = reactive({
   readPrivacyPolicy: false
 });
 const handlerSignIn = async () => {
-  const { phone, isAgree } = data;
-  if (!phone.trim()) {
-    showToast('Please enter your phone number');
-    return;
-  }
-  if (!validateUSPhoneNumber(phone.trim())) {
-    showToast('Please enter a 10 digit phone number');
-    return;
-  }
   if (!isAgree) {
     showToast('Please read and agree User Agreement and Privacy Policy');
     return;
@@ -99,7 +86,7 @@ const closePop = () => {
   >
     <div class="flex justify-center">
       <img
-        src="assets/logo.svg"
+        src="../../assets/logo.svg"
         class="text-5xl mt-[140px] text-center"
         alt=""
       />

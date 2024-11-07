@@ -3,7 +3,6 @@ import add_icon from 'assets/tabs/add.svg';
 import HomeIcon from '@/views/Dashboard/components/HomeIcon.vue';
 import { useUserStore } from '@/store/useUserStore.js';
 import { useRoute } from 'vue-router';
-import useNavbarHeight from '@/hooks/useNavbarHeight.js';
 
 const userStore = useUserStore();
 const emit = defineEmits(['onAddButtonClick']);
@@ -11,7 +10,6 @@ const handleAddButtonClick = () => {
   emit('onAddButtonClick');
 };
 const route = useRoute();
-const safeBottomStyle = useNavbarHeight();
 </script>
 
 <template>
@@ -74,10 +72,4 @@ const safeBottomStyle = useNavbarHeight();
     </van-tabbar-item>
   </van-tabbar>
 </template>
-<style scoped>
-:deep(.van-tabbar-item__icon .van-badge) {
-  border: 2px solid #f9f9fb;
-  width: 12px;
-  height: 12px;
-}
-</style>
+<style scoped></style>

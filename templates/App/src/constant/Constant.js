@@ -3,3 +3,5 @@ export const TransactionType = {
   SlideOut: 'slide-out',
   None: '__'
 };
+export const USER_PROFILE = 'USER_PROFILE';
+export const USER_TOKEN = 'USER_TOKEN';
