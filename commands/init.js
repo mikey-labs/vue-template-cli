@@ -4,7 +4,6 @@ import * as path from 'node:path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import { Platforms } from '../config/constant.js';
-import ora from 'ora';
 
 const __templatesDir = fileURLToPath(
   path.join(import.meta.url, '../../templates')
@@ -37,12 +36,7 @@ const createTemplate = async (sourcePath) => {
       choices: Platforms
     }
   ]);
-  const spinner = ora({
-    text: chalk.blue('Generate...'),
-    spinner: 'dots' // 可选的加载动画样式
-  });
   await fs.copy(path.join(__templatesDir, platform), sourcePath);
-  spinner.clear();
   console.log(chalk.green(`Generate successfully`));
 };
 export default async () => {
