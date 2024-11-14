@@ -5,45 +5,65 @@
 html, body, 写入safe-area-inset-bottom 是为了通过js可以获取到顶部或者底部的实际像素高度
 */
 @layer utilities {
-    html{
+    /**
+    主题变量设置
+     */
+    :root {
+        --van-button-normal-font-size:16px;
+        --van-primary-color:#0F77F0;
+        --van-danger-color:#F85B59;
+        --van-overlay-background:rgba(51, 51, 51, 0.7);
+        --van-toast-background:rgba(51, 51, 51, 0.8);
+        --van-toast-radius:0.25rem;
         --safe-area-bottom:env(safe-area-inset-bottom);
         --safe-area-bottom-old:constant(safe-area-inset-bottom);
         --safe-area-top-old:constant(safe-area-inset-top);
         --safe-area-top:env(safe-area-inset-top);
+        color-scheme: light;
     }
     /**
+    沉浸式导航
     默认字体设置
+    html,body #app 默认以light 模式展示，都禁止滚动
      */
     html,body,#app{
         @apply h-screen;
-        font-family: -apple-system,BlinkMacSystemFont,Roboto,Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Noto Color Emoji";
+        @apply overflow-hidden text-body;
     }
     /**
-    html,body #app 默认以light 模式展示，都禁止滚动
+    主体内容,最大宽度640
      */
-    html,body{
-        color-scheme: light;
-        @apply overflow-hidden bg-white text-body;
-    }
     #app{
-        @apply overflow-x-hidden overflow-y-auto mx-auto max-w-screen-sm relative;
+        @apply mx-auto max-w-screen-sm;
+    }
+    /**
+    滚动内容平滑滚动
+     */
+    .overflow-y-auto,.overflow-x-auto,.overflow-auto{
+        scroll-behavior: smooth;
     }
     /**
     不显示滚动条
      */
-    .overflow-y-auto::-webkit-scrollbar,.overflow-x-auto::-webkit-scrollbar,.van-sidebar::-webkit-scrollbar{
+    .overflow-y-auto::-webkit-scrollbar,.overflow-x-auto::-webkit-scrollbar{
         @apply w-0 h-0 hidden;
-        scroll-behavior: smooth;
     }
     /**
     所有属性禁止用户选择高亮等属性
      */
     *{
+        /**
+        禁用移动端点击高亮效果
+         */
         -webkit-tap-highlight-color: transparent;
-        -webkit-user-select:none;
-        user-select:none;
+        /**
+        禁用当用户长按页面中的元素时，是否显示上下文菜单（通常是“复制”、“粘贴”等选项）
+         */
         -webkit-touch-callout:none;
-        touch-action: manipulation;
+        /**
+        禁用缩放，禁用选择文字
+         */
+        @apply touch-manipulation select-none;
     }
     /*
     在不支持aspect-ratio使用如下

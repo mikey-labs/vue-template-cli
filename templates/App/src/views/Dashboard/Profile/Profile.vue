@@ -1,11 +1,12 @@
 <script setup>
-import { useRouter } from 'vue-router';
-
 defineOptions({ name: 'Profile' });
-const router = useRouter();
 </script>
 
 <template>
-  <div class="h-full overflow-hidden flex flex-col">profile</div>
+  <div class="h-full overflow-hidden flex flex-col">
+    <NormalNavBar title="Profile" />
+    <div class="flex-1 overflow-y-auto p-4 text-center">Profile</div>
+  </div>
 </template>
+
 <style scoped></style>

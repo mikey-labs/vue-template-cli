@@ -13,16 +13,7 @@ const useUserStoreWithOut = defineStore('UserStore', () => {
     refresh_token: ''
   };
   const userState = {
-    customerId: null,
-    name: '',
-    mobile: '',
-    image: '',
-    gender: 0,
-    height: null,
-    heightUnit: null,
-    weight: null,
-    weightUnit: null,
-    preferenceIds: []
+    name: ''
   };
   const token = ref({ ...tokenState });
   const user = ref({ ...userState });

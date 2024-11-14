@@ -5,7 +5,7 @@ const Request = useHttpRequest({
   base: import.meta.env.VITE_API_PREFIX
 });
 const dataFilter = (res) => {
-  if (res.code === '1001') {
+  if (res.code === '200') {
     return [null, res.result];
   } else {
     showError(res.message);
@@ -28,9 +28,6 @@ const handlePromiseException = (promise) => {
 };
 const signParam = (args) => {
   const [url, data = {}, options = { headers: {} }] = args;
-  // console.log('call api:' + url, 'params:', toValue(data));
-  // data.client_id = CLIENT_ID;
-  // data.client_secret = CLIENT_SECRET;
   const userStore = useUserStore();
   const { access_token } = userStore.token;
   if (access_token) {

@@ -10,7 +10,6 @@ const routerStore = useRouterStore();
 const themeVars = reactive({
   primaryColor: '#0F77F0',
   dangerColor: '#F85B59',
-  buttonNormalFontSize: '16px',
   overlayBackground: 'rgba(51, 51, 51, 0.7)',
   toastBackground: 'rgba(51, 51, 51, 0.8)',
   toastRadius: '0.25rem'
@@ -31,13 +30,6 @@ const themeVars = reactive({
       </keep-alive>
     </transition>
   </router-view>
-
-  <van-config-provider
-    theme="light"
-    :theme-vars="themeVars"
-    theme-vars-scope="global"
-    tag="var"
-  />
 </template>
 
 <style>

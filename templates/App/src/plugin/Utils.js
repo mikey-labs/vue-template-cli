@@ -49,11 +49,17 @@ const getCssVarValue = (prop) => {
     .getComputedStyle(document.documentElement)
     .getPropertyValue(prop);
 };
-export const getSafeBottomHeight = () => {
-  const newValue = getCssVarValue('--safe-area-bottom');
+const getSafeAreaCssValue = (name) => {
+  const newValue = getCssVarValue(name);
   if (!newValue) {
-    const oldValue = getCssVarValue('--safe-area-bottom-old');
+    const oldValue = getCssVarValue(`${name}-old`);
     return Number.parseInt(oldValue) || 0;
   }
   return Number.parseInt(newValue) || 0;
+};
+export const getSafeAreaBottomHeight = () => {
+  return getSafeAreaCssValue('--safe-area-bottom');
+};
+export const getSafeAreaTopHeight = () => {
+  return getSafeAreaCssValue('--safe-area-top');
 };

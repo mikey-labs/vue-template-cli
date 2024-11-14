@@ -10,8 +10,6 @@ export const useRouterStore = defineStore('RouterStore', {
   actions: {
     addOrDelete(oldName, redirection) {
       const { type, step: deleteCount, keepAlive: isKeepAlive } = redirection;
-      // console.log(redirection, oldName);
-      // console.log(oldName, isKeepAlive);
       if (!oldName) return;
       const index = this.keepAlive.findIndex((name) => oldName === name);
       if (isKeepAlive) {
@@ -31,7 +29,7 @@ export const useRouterStore = defineStore('RouterStore', {
       }
       setTimeout(() => {
         console.log(this.keepAlive.join(','));
-      }, 10);
+      }, 0);
     },
     clearCache() {
       this.keepAlive = [];

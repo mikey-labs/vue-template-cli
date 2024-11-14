@@ -4,7 +4,6 @@ import router from './router';
 import './style.css';
 import App from './App.vue';
 import Page from 'components/Atom/Page.vue';
-import Anchor from 'components/Atom/Anchor.vue';
 import { Dialog, setToastDefaultOptions, Toast } from 'vant';
 import 'vant/es/toast/style/index.mjs';
 import 'vant/es/dialog/style/index.mjs';
@@ -17,7 +16,6 @@ setToastDefaultOptions({
 });
 createApp(App)
   .component('Page', Page)
-  .component('Anchor', Anchor)
   .use(router)
   .use(Toast)
   .use(Dialog)

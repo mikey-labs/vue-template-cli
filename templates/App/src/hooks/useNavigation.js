@@ -1,3 +1,5 @@
+import { useRouterStore } from '@/store/useRouterStore.js';
+
 /**@type {{type:null|'push'|'replace'|'back'|'go',step:number,keepAlive:boolean}}*/
 const redirection = {
   type: 'replace',
@@ -42,3 +44,12 @@ export const useNavigation = (router) => {
 window.addEventListener('popstate', () => {
   setRedirection('back', 1, false);
 });
+export const checkKeepAlive = (from, to) => {
+  const routerStore = useRouterStore();
+  const redirection = getRedirection();
+  if (typeof from.meta.keepAlive === 'boolean') {
+    setRedirection(redirection.type, redirection.step, from.meta.keepAlive);
+  }
+  //简单的从path判断是前进后退，如果是前进，传入from name缓存from路由，后退传入 to name删除缓存的路由
+  routerStore.addOrDelete(from.name || to.name, getRedirection());
+};

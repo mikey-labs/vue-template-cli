@@ -1,7 +1,10 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import { getSafeAreaTopHeight } from 'plugin/Utils.js';
 
 const router = useRouter();
+const safeAreaTop = getSafeAreaTopHeight();
+
 const props = defineProps({
   title: {
     type: String
@@ -18,10 +21,9 @@ const props = defineProps({
 });
 const style = {
   '--van-nav-bar-background': props.transparent ? 'transparent' : '#fff',
-  '--van-padding-md': '0.625rem',
-  '--van-border-color': '#eee',
-  top: 'auto'
+  top: safeAreaTop + 'px'
 };
+const placeHolderHeight = ref('');
 const handleBack = () => {
   if (props.backCallback) {
     props.backCallback();
@@ -29,16 +31,22 @@ const handleBack = () => {
     router.back();
   }
 };
+
+const onRefInit = (el) => {
+  placeHolderHeight.value = `${(el?.$el.offsetHeight ?? 0) + safeAreaTop}px`;
+};
 </script>
 
 <template>
   <div
-    :class="{ 'bg-white': !transparent }"
-    class="navbar-safe-area"
+    class="relative"
+    :style="{ height: placeHolderHeight }"
   >
     <van-nav-bar
+      :ref="onRefInit"
       :style="style"
       fixed
+      :safe-area-inset-top="false"
       :title="title"
       :border="border"
       :clickable="false"
@@ -46,7 +54,7 @@ const handleBack = () => {
       <template #left>
         <img
           @click="handleBack"
-          src="assets/back.svg"
+          src="@/assets/core/back.svg"
           alt=""
         />
       </template>
