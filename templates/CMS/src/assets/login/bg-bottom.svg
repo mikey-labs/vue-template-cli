@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="975.00341796875" height="837.4744873046875"
+     viewBox="0 0 975.00341796875 837.4744873046875" fill="none">
+<g opacity="0.15">
+<rect  x="0" y="402.909423828125" width="569.8" height="569.8" transform="rotate(-45 0 402.909423828125)" rx="50"    fill="url(#linear_fill_5CYe5mvBNe8lhDNOIxGQe_0)" >
+</rect>
+</g>
+<g opacity="0.15">
+<rect  x="169.1845703125" y="434.5650634765625" width="569.8" height="569.8" transform="rotate(-45 169.1845703125 434.5650634765625)" rx="50"    fill="url(#linear_fill_s1A1y4SatbFIZYhK3rOiu_0)" >
+</rect>
+</g>
+<defs>
+<linearGradient id="linear_fill_5CYe5mvBNe8lhDNOIxGQe_0" x1="284.9" y1="402.909423828125" x2="284.9" y2="972.709423828125" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3" />
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+</linearGradient>
+<linearGradient id="linear_fill_s1A1y4SatbFIZYhK3rOiu_0" x1="454.0845703125" y1="434.5650634765625" x2="454.0845703125" y2="1004.3650634765625" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3" />
+<stop offset="1" stop-color="#FFFFFF"  />
+</linearGradient>
+</defs>
+</svg>

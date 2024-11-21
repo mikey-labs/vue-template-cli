@@ -1,26 +1,23 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-//如果需要兼容低版本可放开注释
-// import legacy from '@vitejs/plugin-legacy';
+import legacy from '@vitejs/plugin-legacy';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { VantResolver } from '@vant/auto-import-resolver';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { resolve } from 'path';
 
 const resolveAlias = (dir) => resolve(process.cwd(), dir);
 // https://vitejs.dev/config/
 export default defineConfig({
-  mode: 'production',
   plugins: [
     vue(),
     AutoImport({
       imports: ['vue'],
-      resolvers: [VantResolver()]
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
-      resolvers: [VantResolver()]
+      resolvers: [ElementPlusResolver()]
     })
-    //如果需要兼容低版本可放开注释
     // legacy({
     //   targets: ['chrome < 60'],
     //   additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
@@ -54,11 +51,11 @@ export default defineConfig({
       assets: resolveAlias('src/assets/')
     }
   },
-  base: './',
+  base: '/',
   server: {
     cors: true,
     proxy: {
-      '/api': 'https://www-example.com'
+      '/api': 'https://www.example.cn'
     }
   },
   esbuild: {
@@ -66,8 +63,15 @@ export default defineConfig({
   },
   build: {
     emptyOutDir: true,
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
+        manualChunks: {
+          vue: ['vue'],
+          'element-plus': ['element-plus'],
+          'element-plus-icon': ['@element-plus/icons-vue'], // 将依赖单独分割
+          'ali-oss': ['ali-oss']
+        },
         dir: 'dist',
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',

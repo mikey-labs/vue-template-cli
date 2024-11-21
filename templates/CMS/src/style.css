@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+    :root{
+        --el-color-primary: #4285F4;
+        --el-color-danger: #F85B59;
+        --el-form-label-font-size:14px;
+        --el-text-color-regular:#888;
+        --el-font-weight-primary:normal;
+    }
+    html,body,#app{
+        @apply h-full;
+    }
+    html,body{
+        color-scheme: light;
+        @apply overflow-hidden text-body;
+        background: #F0F2F5;
+    }
+    #app{
+        @apply overflow-hidden mx-auto relative;
+    }
+
+    .overflow-y-auto::-webkit-scrollbar,.overflow-x-auto::-webkit-scrollbar,.van-sidebar::-webkit-scrollbar{
+        @apply w-0 h-0 hidden;
+        scroll-behavior: smooth;
+    }
+    *{
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout:none;
+        touch-action: manipulation;
+    }
+    /*
+    在不支持aspect-ratio使用如下
+    宽高比hack
+    */
+    .aspect-inner{
+        @apply absolute left-0 right-0 bottom-0 top-0 h-full w-full;
+    }
+    .aspect-16-9-hack,.aspect-2-1-hack,.aspect-square-hack,.aspect-3-1-hack{
+        @apply h-0 relative w-full;
+    }
+    .aspect-16-9-hack{
+        padding-top: 56.25%;
+    }
+    .aspect-2-1-hack{
+        padding-top: 50%;
+    }
+    .aspect-square-hack{
+        padding-top: 100%;
+    }
+    .aspect-3-1-hack{
+        padding-top: 33.33334%;
+    }
+}
